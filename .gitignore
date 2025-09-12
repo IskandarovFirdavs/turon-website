@@ -28,10 +28,12 @@ db.sqlite3
 media/
 staticfiles/
 assets/
+static/admin/
 
 # i18n #
 *.pot
 *.mo
+locale/
 
 # Others #
 *.swp
