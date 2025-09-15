@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block title %}
+    <title>News page</title>
+    {% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'admin/css/styles/news.css' %}">
+    {% endblock %}
+{% block content %}
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1>Yangiliklar</h1>
+                <p>Eng so'nggi yangiliklar va e'lonlar</p>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <div class="container">
+                <div class="news-grid">
+                    <article class="news-card featured">
+                        <div class="news-image">
+                            <img src="/placeholder.svg?height=300&width=500" alt="Jahon Chempionati">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">10 Dekabr 2024</span>
+                                <span class="news-category">Musobaqa</span>
+                            </div>
+                            <h2>Jahon Chempionati 2024 ga tayyorgarlik boshlandi</h2>
+                            <p>Toshkentda o'tkaziladigan Jahon Chempionati 2024 ga tayyorgarlik ishlari boshlandi.
+                                Musobaqada 25 ta davlatdan 300 dan ortiq sportchi ishtirok etishi kutilmoqda...</p>
+                            <a href="news-detail.html" class="read-more">Batafsil o'qish</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Yoshlar dasturi">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">5 Dekabr 2024</span>
+                                <span class="news-category">Ta'lim</span>
+                            </div>
+                            <h3>Yangi yoshlar dasturi ishga tushirildi</h3>
+                            <p>16-18 yoshli sportchilar uchun maxsus tayyorgarlik dasturi boshlandi...</p>
+                            <a href="news-detail.html" class="read-more">Batafsil o'qish</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Yangi a'zolar">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">1 Dekabr 2024</span>
+                                <span class="news-category">Federatsiya</span>
+                            </div>
+                            <h3>3 ta yangi davlat federatsiyaga qo'shildi</h3>
+                            <p>Malayziya, Indoneziya va Filippin federatsiyaning yangi a'zolari bo'ldi...</p>
+                            <a href="news-detail.html" class="read-more">Batafsil o'qish</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Seminar">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">28 Noyabr 2024</span>
+                                <span class="news-category">Ta'lim</span>
+                            </div>
+                            <h3>Murabbiylar uchun xalqaro seminar</h3>
+                            <p>Samarqandda murabbiylar uchun 5 kunlik seminar o'tkazildi...</p>
+                            <a href="news-detail.html" class="read-more">Batafsil o'qish</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Markaziy Osiyo kubogi">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">20 Noyabr 2024</span>
+                                <span class="news-category">Natijalar</span>
+                            </div>
+                            <h3>Markaziy Osiyo kubogi yakunlandi</h3>
+                            <p>Almatyda o'tkazilgan Markaziy Osiyo kubogida O'zbekiston jamoasi birinchi o'rinni
+                                egalladi...</p>
+                            <a href="news-detail.html" class="read-more">Batafsil o'qish</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="/placeholder.svg?height=200&width=300" alt="Yangi jihozlar">
+                        </div>
+                        <div class="news-content">
+                            <div class="news-meta">
+                                <span class="news-date">15 Noyabr 2024</span>
+                                <span class="news-category">Texnologiya</span>
+                            </div>
+                            <h3>Yangi sport jihoz va anjomlar taqdim etildi</h3>
+                            <p>Zamonaviy texnologiyalar asosida ishlab chiqarilgan yangi sport anjomlari...</p>
+                            <a href="news-detail.html" class="read-more">Batafsil o'qish</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="pagination">
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">Keyingi</button>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

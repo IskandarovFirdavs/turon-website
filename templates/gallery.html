@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block title %}
+    <title>Gallery page</title>
+    {% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'admin/css/styles/gallery.css' %}">
+    {% endblock %}
+{% block content %}
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1>Galereya</h1>
+                <p>Tadbirlar va musobaqalardan eng yaxshi suratlar</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="container">
+                <div class="gallery-filter">
+                    <button class="filter-btn active" data-filter="all">Barchasi</button>
+                    <button class="filter-btn" data-filter="competitions">Musobaqalar</button>
+                    <button class="filter-btn" data-filter="training">Mashg'ulotlar</button>
+                    <button class="filter-btn" data-filter="events">Tadbirlar</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item competitions">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Musobaqa">
+                        <div class="gallery-overlay">
+                            <h3>Jahon Chempionati 2023</h3>
+                            <p>Final musobaqasi</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item training">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Mashg'ulot">
+                        <div class="gallery-overlay">
+                            <h3>Yoshlar Mashg'uloti</h3>
+                            <p>Texnika o'rganish</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item events">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Tadbir">
+                        <div class="gallery-overlay">
+                            <h3>Ochilish Marosimi</h3>
+                            <p>2024 Chempionati</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item competitions">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Sportchilar">
+                        <div class="gallery-overlay">
+                            <h3>Markaziy Osiyo Kubogi</h3>
+                            <p>Yarim final</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item training">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Murabbiy">
+                        <div class="gallery-overlay">
+                            <h3>Murabbiylar Seminari</h3>
+                            <p>Yangi texnikalar</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item events">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Mukofotlash">
+                        <div class="gallery-overlay">
+                            <h3>Mukofotlash Marosimi</h3>
+                            <p>G'oliblar</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item competitions">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Jamoa">
+                        <div class="gallery-overlay">
+                            <h3>Jamoaviy Musobaqa</h3>
+                            <p>Milliy jamoalar</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item training">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Yosh sportchilar">
+                        <div class="gallery-overlay">
+                            <h3>Yosh Talantlar</h3>
+                            <p>Kelajak yulduzi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static  'js/scripts/gallery.js' %}"></script>
+{% endblock %}

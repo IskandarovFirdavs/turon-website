@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block title %}
+    <title>Event detail</title>
+    {% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'admin/css/styles/event-detail.css' %}">
+    {% endblock %}
+{% block content %}
+    <main class="main-content">
+        <section class="event-hero">
+            <div class="container">
+                <div class="event-hero-content">
+                    <div class="event-date-large">
+                        <span class="day">15</span>
+                        <span class="month">Dekabr</span>
+                        <span class="year">2024</span>
+                    </div>
+                    <div class="event-info">
+                        <h1>Jahon Chempionati 2024</h1>
+                        <p class="event-location">📍 Toshkent, O'zbekiston</p>
+                        <p class="event-time">🕐 10:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-details">
+            <div class="container">
+                <div class="details-grid">
+                    <div class="main-content-area">
+                        <h2>Tadbir haqida</h2>
+                        <p>Jahon Chempionati 2024 - bu turon sportining eng katta xalqaro musobaqasi bo'lib, dunyoning
+                            turli burchaklaridan kelgan eng yaxshi sportchilar ishtirok etadi.</p>
+
+                        <h3>Dastur</h3>
+                        <div class="schedule">
+                            <div class="schedule-item">
+                                <span class="time">10:00</span>
+                                <span class="activity">Ochilish marosimi</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="time">11:00</span>
+                                <span class="activity">Birinchi bosqich musobaqalari</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="time">14:00</span>
+                                <span class="activity">Tushlik tanaffusi</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="time">15:00</span>
+                                <span class="activity">Yarim final</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="time">17:00</span>
+                                <span class="activity">Final va yopilish marosimi</span>
+                            </div>
+                        </div>
+
+                        <h3>Ishtirokchilar</h3>
+                        <p>Chempionatda 15 ta davlatdan 200 dan ortiq sportchi ishtirok etadi. Musobaqa 5 ta yoshlar
+                            toifasida o'tkaziladi.</p>
+                    </div>
+
+                    <div class="sidebar">
+                        <div class="info-card">
+                            <h3>Tadbir ma'lumotlari</h3>
+                            <div class="info-item">
+                                <strong>Sana:</strong> 15 Dekabr 2024
+                            </div>
+                            <div class="info-item">
+                                <strong>Vaqt:</strong> 10:00 - 18:00
+                            </div>
+                            <div class="info-item">
+                                <strong>Joy:</strong> Toshkent Sport Majmuasi
+                            </div>
+                            <div class="info-item">
+                                <strong>Kirish:</strong> Bepul
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

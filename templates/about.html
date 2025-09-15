@@ -1,10 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>About</title>
-</head>
-<body>
-    <h1>About Page</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About page{% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'admin/css/styles/about.css' %}">
+    {% endblock %}
+{% block content %}
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1>Biz haqimizda</h1>
+                <p>Xalqaro Turon Federatsiyasi - an'anaviy sport turlarini rivojlantirish va saqlash uchun tashkil
+                    etilgan</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>Bizning missiyamiz</h2>
+                        <p>Xalqaro Turon Federatsiyasi 2010-yilda tashkil etilgan bo'lib, an'anaviy turon sport
+                            turlarini dunyo miqyosida rivojlantirish va targ'ib qilishni maqsad qilgan.</p>
+
+                        <h3>Asosiy yo'nalishlar:</h3>
+                        <ul>
+                            <li>An'anaviy sport turlarini saqlash va rivojlantirish</li>
+                            <li>Xalqaro musobaqalar tashkil etish</li>
+                            <li>Yoshlar o'rtasida turon sportini targ'ib qilish</li>
+                            <li>Madaniy merosni saqlash</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="/placeholder.svg?height=400&width=600" alt="Turon sport musobaqasi">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="container">
+                <h2>Bizning qadriyatlarimiz</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>An'ana</h3>
+                        <p>Qadimiy sport an'analarini saqlash va keyingi avlodlarga o'tkazish</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Birlik</h3>
+                        <p>Turli xalqlarni sport orqali birlashtirish va do'stlik aloqalarini mustahkamlash</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Rivojlanish</h3>
+                        <p>Zamonaviy texnologiyalar yordamida an'anaviy sportni rivojlantirish</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

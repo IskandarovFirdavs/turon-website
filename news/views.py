@@ -1,4 +1,3 @@
-# views.py
 from django.shortcuts import render, get_object_or_404
 from news.models import (
     NewsModel, MembersModel, EventsModel,
@@ -31,12 +30,12 @@ def history_view(request):
 
 def news_list_view(request):
     news_list = NewsModel.objects.order_by('-date')
-    return render(request, "news_list.html", {"news_list": news_list})
+    return render(request, "news.html", {"news_list": news_list})
 
 
 def events_list_view(request):
     events = EventsModel.objects.order_by('-date')
-    return render(request, "events_list.html", {"events": events})
+    return render(request, "events.html", {"events": events})
 
 
 def gallery_view(request):
