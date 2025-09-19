@@ -1,67 +1,66 @@
 {% extends "base.html" %}
 {% load static %}
 
-    {% block title %}
-    <title>Contact page</title>
-    {% endblock %}
-    {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'admin/css/styles/contact.css' %}">
-    {% endblock %}
+{% block title %}
+Contact page
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/styles/contact.css' %}">
+{% endblock %}
 {% block content %}
-    <main class="main-content">
-        <section class="hero-section">
-            <div class="container">
-                <h1>Biz bilan bog'laning</h1>
-                <p>Savollaringiz bo'lsa, biz bilan bog'laning</p>
-            </div>
-        </section>
 
-        <section class="contact-section">
-            <div class="container">
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <h2>Aloqa ma'lumotlari</h2>
+<main class="main-content">
+    <section class="hero-section">
+        <div class="container">
+            <h1>Biz bilan bog'laning</h1>
+            <p>Savollaringiz bo'lsa, biz bilan bog'laning</p>
+        </div>
+    </section>
 
-                        <div class="contact-item">
-                            <h3>Manzil</h3>
-                            <p>Toshkent sh., Amir Temur ko'chasi, 15-uy</p>
-                        </div>
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Aloqa ma'lumotlari</h2>
 
-                        <div class="contact-item">
-                            <h3>Telefon</h3>
-                            <p>+998 71 123 45 67</p>
-                        </div>
-
-                        <div class="contact-item">
-                            <h3>Email</h3>
-                            <p>info@turonfederation.org</p>
-                        </div>
-
-                        <div class="contact-item">
-                            <h3>Ish vaqti</h3>
-                            <p>Dushanba - Juma: 9:00 - 18:00</p>
-                        </div>
+                    <div class="contact-item">
+                        <h3>Manzil</h3>
+                        <p>Toshkent shahar</p>
                     </div>
 
-                    <!-- Replaced contact form with interactive map -->
-                    <div class="map-container">
-                        <h2>Bizning joylashuvimiz</h2>
-                        <div class="map-wrapper">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2996.5!2d69.2401!3d41.2995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b0cc379e9c3%3A0xa5a9323b4aa5cb98!2sAmir%20Temur%20Square!5e0!3m2!1sen!2s!4v1694123456789!5m2!1sen!2s"
+                    <div class="contact-item">
+                        <h3>Telefon</h3>
+                        <p>+1 407 724 4474 (U.S.)</p>
+                        <p>+1 347 583 2684 (U.S.)</p>
+                        <p>+998 90 357 91 55 (UZB)</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p>info@itf-turon.com</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h3>Ish vaqti</h3>
+                        <p>Dushanba - Seshanba:
+                            10:00–17:00</p>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <h2>Bizning joylashuvimiz</h2>
+                    <div class="map-wrapper">
+                        <iframe
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=-74.01778371776804%2C40.578488572957376%2C-73.97778371776805%2C40.61848857295738&layer=mapnik&marker=40.59848857295738%2C-73.99778371776804"
                                 width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade" title="Turon Federation Location">
-                            </iframe>
-                        </div>
-                        <div class="map-info">
-                            <p><i class="fa-solid fa-location-dot"></i> Toshkent shahri</p>
-                        </div>
+                        </iframe>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-{% endblock %}
+        </div>
+    </section>
+</main>{% endblock %}
 
 {% block scripts %}
 {% endblock %}

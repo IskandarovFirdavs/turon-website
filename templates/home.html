@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="{% static 'admin/css/styles/home.css' %}">
     {% endblock %}
 {% block content %}
-    <main>
+  <main>
         <!-- Hero Section -->
         <section class="hero">
+            <div class="hero-pattern">
+                <img src="{% static 'admin/img/naqsh.jpg' %}" alt="">
+            </div>
             <div class="hero-content">
-                <div class="hero-badge">
-                    🏆 World Championship 2024
-                </div>
+
                 <h1 class="hero-title">Xalqaro Turon federatsiyasiga xush kelibsiz</h1>
                 <p class="hero-subtitle">Turon an’anaviy sport turlarini butun dunyoda saqlash va targ‘ib qilish</p>
 
@@ -33,48 +34,33 @@
 
                 <div class="hero-buttons">
                     <a href="#about" class="btn btn-primary">Batafsil ma'lumot oling</a>
-                    <a href="events.html" class="btn btn-secondary">Tadbirlarni ko'rish</a>
+                    <a href="events.html" class="btn btn-primary">Tadbirlarni ko'rish</a>
                 </div>
+            </div>
+            <div class="heroo-pattern">
+                <img src="{% static 'admin/img/naqsh.jpg' %}" alt="">
             </div>
         </section>
 
         <!-- Welcome Section -->
         <section class="welcome-section">
             <div class="container">
-                <h2 class="welcome-title">Turon Federatsiya saytiga hush kelibsiz!</h2>
+                <h2 class="welcome-title">Turon federastiya saytiga xush kelibsiz</h2>
+                <p>Madaniy meros va sport mahorati orqali anʼanaviy Turon sport turlarini saqlash va targʻib qilish.</p>
             </div>
         </section>
 
-        <!-- Latest News -->
+        <!-- News Section -->
         <section class="news-section">
             <div class="container">
-                <h2 class="section-title">Songi yangiliklar</h2>
+                <h2 class="section-title">So'ngi yangiliklar</h2>
                 <div class="news-grid">
                     <article class="news-card">
                         <img src="/placeholder.svg?height=200&width=300" alt="Championship">
                         <div class="news-card-content">
-                            <h3 class="news-card-title">World Championship Results</h3>
-                            <p class="news-card-excerpt">Outstanding performances from athletes across all member
-                                countries...</p>
-                            <span class="news-card-date">December 15, 2024</span>
-                        </div>
-                    </article>
-
-                    <article class="news-card">
-                        <img src="/placeholder.svg?height=200&width=300" alt="Training">
-                        <div class="news-card-content">
-                            <h3 class="news-card-title">New Training Programs</h3>
-                            <p class="news-card-excerpt">Innovative training methods for traditional Turon sports...</p>
-                            <span class="news-card-date">December 10, 2024</span>
-                        </div>
-                    </article>
-
-                    <article class="news-card">
-                        <img src="/placeholder.svg?height=200&width=300" alt="Cultural Event">
-                        <div class="news-card-content">
-                            <h3 class="news-card-title">Cultural Sports Festival</h3>
-                            <p class="news-card-excerpt">Celebrating the rich heritage of Central Asian sports...</p>
-                            <span class="news-card-date">December 5, 2024</span>
+                            <h3 class="news-card-title"></h3>
+                            <p class="news-card-excerpt"></p>
+                            <time class="news-card-date"></time>
                         </div>
                     </article>
                 </div>
@@ -86,14 +72,14 @@
             <div class="container">
                 <div class="about-content">
                     <div class="about-text">
-                        <h2>Biz haqimizda</h2>
-                        <p>The International Turon Federation is dedicated to preserving and promoting traditional
-                            Central Asian sports. Our mission is to maintain the cultural heritage while adapting to
-                            modern sporting standards.</p>
-                        <a href="about.html" class="btn btn-primary">Ko'proq</a>
+                        <h2>Turon federatsiyasi haqida</h2>
+                        <p>Xalqaro “Turon” federatsiyasi anʼanaviylikni asrab-avaylash va targʻib qilishga bagʻishlangan
+                            Markaziy Osiyo sporti. Bizning vazifamiz madaniy merosni asrab-avaylash bilan birga saqlashdir
+                            xalqaro hamkorlik va sport mukammalligi.</p>
+                        <a href="about.html" class="btn btn-primary">Batafsil ma'lumot</a>
                     </div>
                     <div class="about-image">
-                        <img src="/placeholder.svg?height=400&width=500" alt="About Us">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEYJLIdxp4fCQEQyEYOvMCIzM3hFtlxC-G_A&s" alt="Traditional Sports">
                     </div>
                 </div>
             </div>
@@ -102,57 +88,23 @@
         <!-- Gallery Preview -->
         <section class="gallery-preview">
             <div class="container">
-                <h2 class="section-title">Gallery</h2>
-                <div class="gallery-tabs">
-                    <a href="gallery.html?type=photos" class="gallery-tab active">Photos</a>
-                    <a href="gallery.html?type=videos" class="gallery-tab">Videos</a>
-                </div>
+                <h2 class="section-title">Galereya</h2>
             </div>
         </section>
 
-        <!-- Partners -->
+        <!-- Partners Section -->
         <section class="partners-section">
             <div class="container">
-                <h2 class="section-title">Partners</h2>
+                <h2 class="section-title">Bizning hamkorlarimiz</h2>
                 <div class="partners-slider">
                     <div class="partners-track">
                         <div class="partner-item">
                             <img src="/placeholder.svg?height=60&width=80" alt="Uzbekistan">
                         </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Kazakhstan">
-                        </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Kyrgyzstan">
-                        </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Tajikistan">
-                        </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Turkmenistan">
-                        </div>
-                        <!-- Duplicate for seamless loop -->
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Uzbekistan">
-                        </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Kazakhstan">
-                        </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Kyrgyzstan">
-                        </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Tajikistan">
-                        </div>
-                        <div class="partner-item">
-                            <img src="/placeholder.svg?height=60&width=80" alt="Turkmenistan">
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
-{% endblock %}
+    </main>{% endblock %}
 {% block scripts %}
-    <script src="{% static  'js/scripts/home.js' %}"></script>
 {% endblock %}

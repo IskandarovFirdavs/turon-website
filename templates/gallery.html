@@ -2,7 +2,7 @@
 {% load static %}
 
     {% block title %}
-    <title>Gallery page</title>
+    Gallery page
     {% endblock %}
     {% block extra_css %}
     <link rel="stylesheet" href="{% static 'admin/css/styles/gallery.css' %}">
@@ -92,8 +92,6 @@
                 </div>
             </div>
         </section>
-    </main>
-{% endblock %}
+    </main>{% endblock %}
 {% block scripts %}
-    <script src="{% static  'js/scripts/gallery.js' %}"></script>
 {% endblock %}

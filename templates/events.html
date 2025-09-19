@@ -2,13 +2,13 @@
 {% load static %}
 
     {% block title %}
-    <title>Events page</title>
+    Events page
     {% endblock %}
     {% block extra_css %}
     <link rel="stylesheet" href="{% static 'admin/css/styles/events.css' %}">
     {% endblock %}
 {% block content %}
-    <main class="main-content">
+   <main class="main-content">
         <section class="hero-section">
             <div class="container">
                 <h1>Tadbirlar</h1>
@@ -79,8 +79,6 @@
                 </div>
             </div>
         </section>
-    </main>
-{% endblock %}
+    </main>{% endblock %}
 {% block scripts %}
-    <script src="{% static  'js/scripts/events.js' %}"></script>
 {% endblock %}
