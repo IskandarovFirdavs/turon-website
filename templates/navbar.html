@@ -2,7 +2,7 @@
 <nav class="navbar">
     <div class="container navbar-container">
         <a href="{% url 'home' %}" class="navbar-logo">
-            <img style="border-radius:50px;" src="{% static 'admin/img/turon_logo.jpg' %}" alt="" >
+            <img style="border-radius:50px;" src="{% static 'admin/img/turon_logo.jpg' %}" alt="">
         </a>
 
         <ul class="navbar-menu">
@@ -30,22 +30,32 @@
             </li>
         </ul>
 
-        <div class="navbar-controls">
-            <div class="language-selector">
-                <button class="language-btn">
-                    <span id="current-lang">EN</span> ▼
-                </button>
-                <div class="dropdown-content" id="language-dropdown">
-                    <a href="#" data-lang="uz">UZ</a>
-                    <a href="#" data-lang="ru">RU</a>
-                    <a href="#" data-lang="en">EN</a>
-                </div>
-            </div>
-            <button class="theme-toggle">
-                <span id="theme-icon">☀️</span>
-            </button>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+       {% load i18n %}
+
+<div class="navbar-controls">
+    <div class="language-selector">
+        <button class="language-btn">
+            <span>
+                {% get_current_language as LANGUAGE_CODE %}
+                {{ LANGUAGE_CODE|upper }}
+            </span> ▼
+        </button>
+        <div class="dropdown-content" id="language-dropdown">
+            <form action="{% url 'set_language' %}" method="post" class="language-buttons">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}"/>
+                <button type="submit" name="language" value="uz" class="language-button">UZ</button>
+                <button type="submit" name="language" value="ru" class="language-button">RU</button>
+                <button type="submit" name="language" value="en" class="language-button">ENG</button>
+            </form>
         </div>
+    </div>
+    <button class="theme-toggle">
+        <span id="theme-icon">☀️</span>
+    </button>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+</div>
+
     </div>
 
     <div class="mobile-menu" id="mobile-menu">
