@@ -1,73 +1,84 @@
 {% load static %}
+{% load i18n %}
 <nav class="navbar">
     <div class="container navbar-container">
         <a href="{% url 'home' %}" class="navbar-logo">
-            <img style="border-radius:50px;" src="{% static 'admin/img/turon_logo.jpg' %}" alt="">
+            <img src="{% static 'admin/img/turon_logo.jpg' %}" alt="{% trans 'Turon Logo' %}">
         </a>
 
         <ul class="navbar-menu">
             <li class="navbar-item">
-                <a href="{% url 'home' %}" class="navbar-link">Home</a>
+                <a href="{% url 'home' %}" class="navbar-link">{% trans "Home" %}</a>
             </li>
             <li class="navbar-item dropdown">
-                <a href="{% url 'about' %}" class="navbar-link">About</a>
-                <div class="dropdown-content">
-                    <a href="{% url 'history' %}">History</a>
-                    <a href="{% url 'members' %}">Members</a>
-                </div>
+                <a href="{% url 'about' %}" class="navbar-link">{% trans "About" %}</a>
+                <ul class="dropdown-content">
+                    <li><a href="{% url 'history' %}">{% trans "History" %}</a></li>
+                    <li><a href="{% url 'members' %}">{% trans "Members" %}</a></li>
+                </ul>
             </li>
             <li class="navbar-item">
-                <a href="{% url 'news' %}" class="navbar-link">News</a>
+                <a href="{% url 'news' %}" class="navbar-link">{% trans "News" %}</a>
             </li>
             <li class="navbar-item">
-                <a href="{% url 'events' %}" class="navbar-link">Events</a>
+                <a href="{% url 'events' %}" class="navbar-link">{% trans "Events" %}</a>
             </li>
             <li class="navbar-item">
-                <a href="{% url 'gallery' %}" class="navbar-link">Gallery</a>
+                <a href="{% url 'gallery' %}" class="navbar-link">{% trans "Gallery" %}</a>
             </li>
             <li class="navbar-item">
-                <a href="{% url 'contact' %}" class="navbar-link">Contact</a>
+                <a href="{% url 'contact' %}" class="navbar-link">{% trans "Contact" %}</a>
             </li>
         </ul>
 
-       {% load i18n %}
-
-<div class="navbar-controls">
-    <div class="language-selector">
-        <button class="language-btn">
-            <span>
-                {% get_current_language as LANGUAGE_CODE %}
-                {{ LANGUAGE_CODE|upper }}
-            </span> ▼
-        </button>
-        <div class="dropdown-content" id="language-dropdown">
-            <form action="{% url 'set_language' %}" method="post" class="language-buttons">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.path }}"/>
-                <button type="submit" name="language" value="uz" class="language-button">UZ</button>
-                <button type="submit" name="language" value="ru" class="language-button">RU</button>
-                <button type="submit" name="language" value="en" class="language-button">ENG</button>
-            </form>
+        <div class="navbar-controls">
+            <div class="language-selector">
+                <button class="language-btn" aria-expanded="false">
+                    <span id="current-lang">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {{ LANGUAGE_CODE|upper }}
+                    </span> ▼
+                </button>
+                <div class="dropdown-content" id="language-dropdown">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}"/>
+                        <button type="submit" name="language" value="uz" class="language-button">UZ</button>
+                        <button type="submit" name="language" value="ru" class="language-button">RU</button>
+                        <button type="submit" name="language" value="en" class="language-button">EN</button>
+                    </form>
+                </div>
+            </div>
+            <button class="theme-toggle" aria-label="{% trans 'Toggle theme' %}">
+                <span id="theme-icon">☀️</span>
+            </button>
+            <button class="mobile-menu-btn" aria-label="{% trans 'Toggle mobile menu' %}">☰</button>
         </div>
-    </div>
-    <button class="theme-toggle">
-        <span id="theme-icon">☀️</span>
-    </button>
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-</div>
-
     </div>
 
     <div class="mobile-menu" id="mobile-menu">
         <ul class="navbar-menu">
-            <li class="navbar-item"><a href="{% url 'home' %}" class="navbar-link">Home</a></li>
-            <li class="navbar-item"><a href="{% url 'about' %}" class="navbar-link">About</a></li>
-            <li class="navbar-item"><a href="{% url 'history' %}" class="navbar-link">History</a></li>
-            <li class="navbar-item"><a href="{% url 'members' %}" class="navbar-link">Members</a></li>
-            <li class="navbar-item"><a href="{% url 'news' %}" class="navbar-link">News</a></li>
-            <li class="navbar-item"><a href="{% url 'events' %}" class="navbar-link">Events</a></li>
-            <li class="navbar-item"><a href="{% url 'gallery' %}" class="navbar-link">Gallery</a></li>
-            <li class="navbar-item"><a href="{% url 'contact' %}" class="navbar-link">Contact</a></li>
+            <li class="navbar-item">
+                <a href="{% url 'home' %}" class="navbar-link">{% trans "Home" %}</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'history' %}" class="navbar-link">{% trans "History" %}</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'members' %}" class="navbar-link">{% trans "Members" %}</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'news' %}" class="navbar-link">{% trans "News" %}</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'events' %}" class="navbar-link">{% trans "Events" %}</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'gallery' %}" class="navbar-link">{% trans "Gallery" %}</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{% url 'contact' %}" class="navbar-link">{% trans "Contact" %}</a>
+            </li>
         </ul>
     </div>
 </nav>
