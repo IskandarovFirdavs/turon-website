@@ -16,26 +16,49 @@
             </div>
         </section>
 
-        <section class="events-section">
-            <div class="container">
-                <div class="events-grid">
-                    {% for event in events %}
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="day">{{ event.date|date:"d" }}</span>
-                            <span class="month">{{ event.date|date:"M" }}</span>
-                        </div>
-                        <div class="event-content">
-                            <h3>{{ event.title }}</h3>
-                            <p class="event-location">{{ event.location }}</p>
-                            <p class="event-description">{{ event.text }}</p>
-                            <a href="{% url 'event_detail' event.pk %}" class="event-link">Batafsil</a>
-                        </div>
-                    </div>
-                    {% endfor %}
+<section class="events-section">
+    <div class="container">
+        <div class="events-grid">
+            {% for event in events %}
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">{{ event.date|date:"d" }}</span>
+                    <span class="month">{{ event.date|date:"M" }}</span>
+                </div>
+                <div class="event-content">
+                    <h3>{{ event.title }}</h3>
+                    <p class="event-location">{{ event.location }}</p>
+                    <p class="event-description">{{ event.text }}</p>
+                    <a href="{% url 'event_detail' event.pk %}" class="event-link">Batafsil</a>
                 </div>
             </div>
-        </section>
+            {% empty %}
+            <p>Hozircha tadbirlar yo‘q.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if events.has_other_pages %}
+        <div class="pagination">
+            {% if events.has_previous %}
+                <a href="?page={{ events.previous_page_number }}">&laquo; Oldingi</a>
+            {% endif %}
+
+            {% for i in events.paginator.page_range %}
+                {% if events.number == i %}
+                    <span class="current">{{ i }}</span>
+                {% else %}
+                    <a href="?page={{ i }}">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if events.has_next %}
+                <a href="?page={{ events.next_page_number }}">Keyingi &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
     </main>{% endblock %}
 {% block scripts %}
 {% endblock %}

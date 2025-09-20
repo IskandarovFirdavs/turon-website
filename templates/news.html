@@ -19,44 +19,56 @@
         </div>
     </section>
 
-    <section class="news-section">
-        <div class="container">
-            <div class="news-grid">
-                {% for item in news_list %}
-                <article class="news-card">
-                    <div class="news-image">
-                        {% if item.main_image %}
-                            <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
-                        {% else %}
-                            <img src="{% static 'admin/img/placeholder-news.png' %}" alt="{{ item.title }}">
-                        {% endif %}
-                    </div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date">{{ item.date|date:"d F Y" }}</span>
-                        </div>
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.text|truncatewords:30 }}</p>
-                        <a href="{% url 'news_detail' item.pk %}" class="read-more">{% trans "Batafsil o'qish" %}</a>
-                    </div>
-                </article>
-                {% empty %}
-                <div class="no-news">
-                    <p>{% trans "Hozircha yangiliklar mavjud emas" %}</p>
+<section class="news-section">
+    <div class="container">
+        <div class="news-grid">
+            {% for item in news_list %}
+            <article class="news-card">
+                <div class="news-image">
+                    {% if item.main_image %}
+                        <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
+                    {% else %}
+                        <img src="{% static 'admin/img/placeholder-news.png' %}" alt="{{ item.title }}">
+                    {% endif %}
                 </div>
-                {% endfor %}
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-date">{{ item.date|date:"d F Y" }}</span>
+                    </div>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.text|truncatewords:30 }}</p>
+                    <a href="{% url 'news_detail' item.pk %}" class="read-more">{% trans "Batafsil o'qish" %}</a>
+                </div>
+            </article>
+            {% empty %}
+            <div class="no-news">
+                <p>{% trans "Hozircha yangiliklar mavjud emas" %}</p>
             </div>
+            {% endfor %}
+        </div>
 
-            {% if news_list %}
-            <div class="pagination">
-                <button class="pagination-btn active">1</button>
-                <button class="pagination-btn">2</button>
-                <button class="pagination-btn">3</button>
-                <button class="pagination-btn">{% trans "Keyingi" %}</button>
-            </div>
+        <!-- Pagination -->
+        {% if news_list.has_other_pages %}
+        <div class="pagination">
+            {% if news_list.has_previous %}
+                <a href="?page={{ news_list.previous_page_number }}" class="pagination-btn">&laquo; {% trans "Oldingi" %}</a>
+            {% endif %}
+
+            {% for i in news_list.paginator.page_range %}
+                {% if news_list.number == i %}
+                    <span class="pagination-btn active">{{ i }}</span>
+                {% else %}
+                    <a href="?page={{ i }}" class="pagination-btn">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if news_list.has_next %}
+                <a href="?page={{ news_list.next_page_number }}" class="pagination-btn">{% trans "Keyingi" %} &raquo;</a>
             {% endif %}
         </div>
-    </section>
+        {% endif %}
+    </div>
+</section>
 </main>
 {% endblock %}
 

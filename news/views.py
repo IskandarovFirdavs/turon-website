@@ -3,6 +3,7 @@ from news.models import (
     NewsModel, MembersModel, EventsModel,
     NewsImageModel, NewsVideoModel, EventsImageModel, EventsVideoModel
 )
+from django.core.paginator import Paginator
 
 
 def entering_view(request):
@@ -34,11 +35,17 @@ def history_view(request):
 
 def news_list_view(request):
     news_list = NewsModel.objects.order_by('-date')
-    return render(request, "news.html", {"news_list": news_list})
+    paginator = Paginator(news_list, 6)
+    page_number = request.GET.get('page')
+    news = paginator.get_page(page_number)
+    return render(request, "news.html", {"news_list": news})
 
 
 def events_list_view(request):
-    events = EventsModel.objects.order_by('-date')
+    events_list = EventsModel.objects.order_by('-date')
+    paginator = Paginator(events_list, 6)
+    page_number = request.GET.get('page')
+    events = paginator.get_page(page_number)
     return render(request, "events.html", {"events": events})
 
 
