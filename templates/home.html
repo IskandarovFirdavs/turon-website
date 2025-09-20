@@ -219,7 +219,7 @@
                 {% for video in videos|slice:":4" %}
                 <div class="gallery-preview-item">
                     <video muted loop>
-                        <source src="{{ video.video.url }}" type="video/mp4">
+                        <source  src="{{ video.video.url }}" type="video/mp4">
                     </video>
                     <div class="video-indicator">{% trans "Video" %}</div>
                     <div class="gallery-preview-overlay">
@@ -236,31 +236,28 @@
             </div>
 
             <div style="text-align: center; margin-top: 30px;">
-                <a href="{% url 'gallery' %}" class="btn btn-primary">{% trans "Barchasini ko'rish" %}</a>
+                <a  href="{% url 'gallery' %}" class="btn btn-primary">{% trans "Barchasini ko'rish" %}</a>
             </div>
         </div>
     </section>
 
     <!-- Partners Section -->
-    <section class="partners-section">
-        <div class="container">
-            <h2 class="section-title">{% trans "Azolar" %}</h2>
-            <div class="news-grid">
-                {% for member in members %}
-                <article class="news-card">
-                    <a href="{{ member.website_url }}" target="_blank">
-                        <img src="{{ member.image.url }}" alt="{{ member.name }}" style="height: 150px; object-fit: contain;">
-                        <div style="text-align: center; margin-top: 10px;">
-                            <h3>{{ member.name }}</h3>
+         <section class="partners-section">
+            <div class="container">
+                <h2 class="section-title">Our Partners</h2>
+                <div class="partners-slider">
+                    <div class="partners-track">
+                        {% for member in members %}
+                        <div class="partner-item">
+                            <a href="{{ member.website_url }}">
+                                <img src="{{ member.image.url }}" alt="{{ member.name }}">
+                            </a>
                         </div>
-                    </a>
-                </article>
-                {% empty %}
-                <p style="text-align: center; color: #6b7280;">{% trans "A'zolar mavjud emas." %}</p>
-                {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 </main>
 {% endblock %}
 
@@ -284,4 +281,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script src="{% static 'admin/js/scripts/home.html' %}"></script>
 {% endblock %}
