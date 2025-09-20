@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from parler.admin import TranslatableAdmin
-from .models import NewsModel, NewsImageModel, NewsVideoModel, MembersModel
+from .models import NewsModel, NewsImageModel, NewsVideoModel, MembersModel, EventsModel
 
 
 # --- Inlines ---
@@ -101,3 +101,17 @@ class NewsVideoAdmin(admin.ModelAdmin):
             return format_html('<a href="{}" target="_blank">Watch</a>', obj.video.url)
         return "-"
     video_link.short_description = "Video"
+
+
+# --- EventsModel ---
+@admin.register(EventsModel)
+class EventsModelAdmin(TranslatableAdmin):
+    list_display = ("title", "date", "location", "has_media")
+    search_fields = ("translations__title", "translations__description")
+    list_filter = ("date", "location")
+
+    def has_media(self, obj):
+        return bool(obj.main_image or obj.main_video)
+    has_media.boolean = True
+    has_media.short_description = "Media?"
+

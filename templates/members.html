@@ -1,56 +1,49 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
-    {% block title %}
-    Members page
-    {% endblock %}
-    {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'admin/css/styles/members.css' %}">
-    {% endblock %}
+{% block title %}
+{% trans "Members page" %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/styles/members.css' %}">
+{% endblock %}
+
 {% block content %}
-  <main class="main-content">
-        <section class="hero-section">
-            <div class="container">
-                <h1>A'zo Davlatlar</h1>
-                <p>Xalqaro Turon Federatsiyasi a'zolari</p>
-            </div>
-        </section>
+<main class="main-content">
+    <section class="hero-section">
+        <div class="container">
+            <h1>{% trans "A'zo Davlatlar" %}</h1>
+            <p>{% trans "Xalqaro Turon Federatsiyasi a'zolari" %}</p>
+        </div>
+    </section>
 
-        <section class="members-section">
-            <div class="container">
-                <div class="members-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">25</div>
-                        <div class="stat-label">A'zo davlatlar</div>
+    <section class="members-section">
+        <div class="container">
+            <div class="members-grid">
+                {% for member in members %}
+                <div class="member-card">
+                    <div class="member-image">
+                        <img height="170px" src="{{ member.image.url }}" alt="{{ member.name }}">
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Faol sportchilar</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">6</div>
-                        <div class="stat-label">Qit'alar</div>
-                    </div>
+                    <h3>{{ member.name }}</h3>
+                    {% if member.website_url %}
+                    <a style="text-decoration:none;" href="{{ member.website_url }}" target="_blank" class="member-website">
+                        {% trans "Vebsayt" %}
+                    </a>
+                    {% endif %}
                 </div>
-
-                <div class="members-grid">
-                    <div class="member-card">
-                        <div class="member-flag">🇺🇿</div>
-                        <h3>O'zbekiston</h3>
-                        <p class="member-status">Asoschi a'zo</p>
-                        <p class="member-info">Sportchilar: 85</p>
-                        <p class="member-joined">A'zo bo'lgan: 2010</p>
-                    </div>
-                    <div class="member-card">
-                        <div class="member-flag">🇰🇿</div>
-                        <h3>Qozog'iston</h3>
-                        <p class="member-status">Faol a'zo</p>
-                        <p class="member-info">Sportchilar: 72</p>
-                        <p class="member-joined">A'zo bo'lgan: 2010</p>
-                    </div>
+                {% empty %}
+                <div class="no-members">
+                    <p>{% trans "Hozircha a'zolar mavjud emas" %}</p>
                 </div>
+                {% endfor %}
             </div>
-        </section>
-    </main>{% endblock %}
+        </div>
+    </section>
+</main>
+{% endblock %}
+
 {% block scripts %}
 {% endblock %}

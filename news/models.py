@@ -53,3 +53,20 @@ class EventsModel(TranslatableModel):
 
     def __str__(self):
         return self.safe_translation_getter("title", any_language=True)
+
+
+
+class EventsImageModel(models.Model):
+    events = models.ForeignKey(EventsModel, on_delete=models.CASCADE, related_name="event_images")
+    image = models.ImageField(upload_to="news/imgs/")
+
+    def __str__(self):
+        return f"Image for {self.events}"
+
+
+class EventsVideoModel(models.Model):
+    events = models.ForeignKey(EventsModel, on_delete=models.CASCADE, related_name="event_ideos")
+    video = models.FileField(upload_to="news/videos/")
+
+    def __str__(self):
+        return f"Video for {self.events}"
