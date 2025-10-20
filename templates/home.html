@@ -1,5 +1,10 @@
-{% extends "base.html" %} {% load static %} {% load i18n %} {% block title %}{%
-trans "Home page" %}{% endblock %} {% block extra_css %}
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+{% trans "Home page" %}
+{% endblock %}
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'admin/css/styles/home.css' %}" />
 <style>
   .gallery-preview-grid {
@@ -88,8 +93,7 @@ trans "Home page" %}{% endblock %} {% block extra_css %}
           {% trans "Xalqaro Turon federatsiyasiga xush kelibsiz" %}
         </h1>
         <p class="hero-subtitle">
-          {% trans "Turon an'anaviy sport turlarini butun dunyoda saqlash va
-          targ'ib qilish" %}
+          {% trans "Turon an'anaviy sport turlarini butun dunyoda saqlash va targ'ib qilish" %}
         </p>
 
         <div class="hero-stats">
@@ -127,8 +131,7 @@ trans "Home page" %}{% endblock %} {% block extra_css %}
     <div class="container">
       <h2 class="welcome-title">{% trans "Turon federatsiya sayti" %}</h2>
       <p>
-        {% trans "Madaniy meros va sport mahorati orqali anʼanaviy Turon sport
-        turlarini saqlash va targʻib qilish." %}
+        {% trans "Madaniy meros va sport mahorati orqali anʼanaviy Turon sport turlarini saqlash va targʻib qilish." %}
       </p>
     </div>
   </section>
@@ -176,9 +179,7 @@ trans "Home page" %}{% endblock %} {% block extra_css %}
         <div class="about-text">
           <h2>{% trans "Turon federatsiyasi haqida" %}</h2>
           <p>
-            {% trans "Xalqaro 'Turon' federatsiyasi anʼanaviylikni
-            asrab-avaylash va targʻib qilishga bagʻishlangan Markaziy Osiyo
-            sporti." %}
+            {% trans "Xalqaro 'Turon' federatsiyasi anʼanaviylikni asrab-avaylash va targʻib qilishga bagʻishlangan Markaziy Osiyo sporti." %}
           </p>
           <a href="{% url 'about' %}" class="btn btn-primary"
             >{% trans "Batafsil ma'lumot" %}</a

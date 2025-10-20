@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+from itertools import chain
+from operator import attrgetter
 from news.models import (
     NewsModel, MembersModel, EventsModel,
     GalleryImageModel, GalleryVideoModel
@@ -8,6 +10,7 @@ from news.models import (
 
 def entering_view(request):
     return render(request, "entering.html")
+
 
 def home_view(request):
     videos = GalleryVideoModel.objects.order_by('-created_at')[:3]
@@ -27,6 +30,7 @@ def home_view(request):
         "videos": videos,
     }
     return render(request, "home.html", context)
+
 
 def about_view(request):
     return render(request, "about.html")
@@ -59,30 +63,50 @@ def events_list_view(request):
     page_obj = paginator.get_page(page_number)
     return render(request, "events.html", {"page_obj": page_obj})
 
-def gallery_view(request):
-    images = GalleryImageModel.objects.order_by('-created_at')
-    videos = GalleryVideoModel.objects.order_by('-created_at')
 
-    # Har bir video uchun embed URL tayyorlash (YouTube)
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from .models import GalleryImageModel, GalleryVideoModel
+
+def gallery_view(request):
+    image_list = GalleryImageModel.objects.order_by('-created_at')
+    video_list = GalleryVideoModel.objects.order_by('-created_at')
+
+    image_paginator = Paginator(image_list, 1)  # 6 tadan sahifada
+    video_paginator = Paginator(video_list, 1)  # 3 tadan sahifada
+
+    image_page_number = request.GET.get('page')
+    video_page_number = request.GET.get('vpage')
+
+    images = image_paginator.get_page(image_page_number)
+    videos = video_paginator.get_page(video_page_number)
+
     for video in videos:
         if "youtube.com/watch?v=" in video.video_url:
             video.embed_url = video.video_url.replace("watch?v=", "embed/")
         elif "youtu.be/" in video.video_url:
-            # qisqa linkni embed ga o‘zgartirish
             video.embed_url = video.video_url.replace("youtu.be/", "www.youtube.com/embed/")
         else:
-            video.embed_url = video.video_url  # boshqa linklar shunchaki saqlansin
+            video.embed_url = video.video_url
 
-    context = {
+    return render(request, "gallery.html", {
         "images": images,
         "videos": videos,
-    }
-    return render(request, "gallery.html", context)
+    })
+
 
 
 def members_view(request):
     members = MembersModel.objects.all()
-    return render(request, "members.html", {"members": members})
+    paginator = Paginator(members, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        "members": members,
+        "page_obj": page_obj,
+    }
+    return render(request, "members.html", context)
 
 
 def contact_view(request):
@@ -108,5 +132,7 @@ def event_detail_view(request, pk):
         "all_events": all_events,
     })
 
+
 def custom_page_not_found_view(request, exception):
     return render(request, "404.html", status=404)
+

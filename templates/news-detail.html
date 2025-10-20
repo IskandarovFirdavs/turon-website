@@ -1,6 +1,8 @@
 {% extends "base.html" %} {% load static %} {% load i18n %}
 <!--  -->
-{% block title %} {{ news.title }} {% endblock %}
+{% block title %}
+{{ news.title }}
+{% endblock %}
 <!--  -->
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'admin/css/styles/news-detail.css' %}" />
@@ -30,7 +32,7 @@
             <h3>{% trans "Bog'liq yangiliklar" %}</h3>
             {% for item in related_news %}
             <div class="related-item">
-              <a href="{% url 'news_detail' item.pk %}">
+              <a style="text-decoration:none" href="{% url 'news_detail' item.pk %}">
                 <h4>{{ item.title }}</h4>
               </a>
               <span class="related-date">{{ item.date|date:"d F Y" }}</span>
@@ -39,15 +41,7 @@
           </div>
           {% endif %}
 
-          <div class="share-section">
-            <h3>{% trans "Ulashish" %}</h3>
-            <div class="share-buttons">
-              <button class="share-btn">Facebook</button>
-              <button class="share-btn">Twitter</button>
-              <button class="share-btn">Telegram</button>
-            </div>
           </div>
-        </div>
       </div>
     </div>
   </article>

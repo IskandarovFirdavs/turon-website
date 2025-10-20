@@ -38,9 +38,9 @@ class EventsModel(TranslatableModel):
         description=models.TextField()
     )
     location = models.CharField(max_length=255)
-    main_image = models.ImageField(upload_to="events/imgs/", blank=True, null=True)
+    main_image = models.ImageField(upload_to="events/imgs/")
     start_time = models.DateTimeField()
-    end_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField()
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -50,7 +50,7 @@ class EventsModel(TranslatableModel):
 
 class GalleryImageModel(models.Model):
     image = models.ImageField(upload_to="gallery/imgs/")
-    caption = models.CharField(max_length=255, blank=True)
+    caption = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -59,7 +59,7 @@ class GalleryImageModel(models.Model):
     
 class GalleryVideoModel(models.Model):
     video_url = models.URLField(max_length=255)
-    caption = models.CharField(max_length=255, blank=True)
+    caption = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

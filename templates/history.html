@@ -1,76 +1,73 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-
-    {% block title %}
-    History page
-    {% endblock %}
-    {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'admin/css/styles/history.css' %}">
-    {% endblock %}
+{% block title %}{% trans "History" %}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/styles/history.css' %}">
+{% endblock %}
 {% block content %}
-  <main class="main-content">
-        <section class="hero-section">
-            <div class="container">
-                <h1>Bizning Tariximiz</h1>
-                <p>Xalqaro Turon Federatsiyasining rivojlanish yo'li</p>
-            </div>
-        </section>
+<main class="main-content">
+    <section class="hero-section">
+        <div class="container">
+            <h1>{% trans "Bizning Tariximiz" %}</h1>
+            <p>{% trans "Xalqaro Turon Federatsiyasining rivojlanish yo'li" %}</p>
+        </div>
+    </section>
 
-<section class="timeline-section">
-    <div class="container">
-        <div class="timeline">
-            <div class="timeline-wrapper">
-                <div class="timeline-item">
-                    <div class="timeline-date">2010</div>
-                    <div class="content-wrapper">
-                        <div class="timeline-content">
-                            <h3>Federatsiya tashkil etilishi</h3>
-                            <p>Toshkentda 5 ta davlat vakillari ishtirokida Xalqaro Turon Federatsiyasi tashkil etildi. Birinchi prezident sifatida Ahmad Karimov saylandi.</p>
+    <section class="timeline-section">
+        <div class="container">
+            <div class="timeline">
+                <div class="timeline-wrapper">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2010</div>
+                        <div class="content-wrapper">
+                            <div class="timeline-content">
+                                <h3>{% trans "Federatsiya tashkil etilishi" %}</h3>
+                                <p>{% trans "Toshkentda 5 ta davlat vakillari ishtirokida Xalqaro Turon Federatsiyasi tashkil etildi. Birinchi prezident sifatida Ahmad Karimov saylandi." %}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">2012</div>
-                    <div class="content-wrapper">
-                        <div class="timeline-content">
-                            <h3>Brinchi Jahon Chempionati</h3>
-                            <p>Samarqandda birinchi jahon chempionati o'tkazildi. 150 sportchi ishtirok etdi.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2012</div>
+                        <div class="content-wrapper">
+                            <div class="timeline-content">
+                                <h3>{% trans "Brinchi Jahon Chempionati" %}</h3>
+                                <p>{% trans "Samarqandda birinchi jahon chempionati o'tkazildi. 150 sportchi ishtirok etdi." %}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-        <section class="achievements-section">
-            <div class="container">
-                <h2>Asosiy yutuqlar</h2>
-                <div class="achievements-grid">
-                    <div class="achievement-card">
-                        <div class="achievement-number">25+</div>
-                        <h3>A'zo davlatlar</h3>
-                        <p>Dunyoning turli qit'alaridan</p>
-                    </div>
-                    <div class="achievement-card">
-                        <div class="achievement-number">500+</div>
-                        <h3>Faol sportchilar</h3>
-                        <p>Ro'yxatdan o'tgan</p>
-                    </div>
-                    <div class="achievement-card">
-                        <div class="achievement-number">50+</div>
-                        <h3>Xalqaro tadbirlar</h3>
-                        <p>O'tkazilgan</p>
-                    </div>
-                    <div class="achievement-card">
-                        <div class="achievement-number">15</div>
-                        <h3>Yillik tajriba</h3>
-                        <p>Faoliyat davri</p>
-                    </div>
+    </section>
+    <section class="achievements-section">
+        <div class="container">
+            <h2>{% trans "Asosiy yutuqlar" %}</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-number">25+</div>
+                    <h3>{% trans "A'zo davlatlar" %}</h3>
+                    <p>{% trans "Dunyoning turli qit'alaridan" %}</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">500+</div>
+                    <h3>{% trans "Faol sportchilar" %}</h3>
+                    <p>{% trans "Ro'yxatdan o'tgan" %}</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">50+</div>
+                    <h3>{% trans "Xalqaro tadbirlar" %}</h3>
+                    <p>{% trans "O'tkazilgan" %}</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">15</div>
+                    <h3>{% trans "Yillik tajriba" %}</h3>
+                    <p>{% trans "Faoliyat davri" %}</p>
                 </div>
             </div>
-        </section>
-    </main>{% endblock %}
+        </div>
+    </section>
+</main>{% endblock %}
 {% block scripts %}
 {% endblock %}
