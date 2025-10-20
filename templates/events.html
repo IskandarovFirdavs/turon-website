@@ -1,65 +1,64 @@
-{% extends "base.html" %}
-{% load static %}
-{% load i18n %}
+{% extends "base.html" %} {% load static %} {% load i18n %}
+<!--  -->
 
-    {% block title %}
-    Events page
-    {% endblock %}
-    {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'admin/css/styles/events.css' %}">
-    {% endblock %}
-{% block content %}
-   <main class="main-content">
-        <section class="hero-section">
-            <div class="container">
-                <h1>Tadbirlar</h1>
-                <p>Yaqinlashib kelayotgan va o'tgan tadbirlar haqida ma'lumot</p>
-            </div>
-        </section>
+{% block title %}{% trans "Events" %}{% endblock %}
 
-<section class="events-section">
+<!--  -->
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/styles/events.css' %}" />
+{% endblock %} {% block content %}
+<main class="main-content">
+  <section class="hero-section">
     <div class="container">
-        <div class="events-grid">
-            {% for event in events %}
-            <div class="event-card">
-                <div class="event-date">
-                    <span class="day">{{ event.date|date:"d" }}</span>
-                    <span class="month">{{ event.date|date:"M" }}</span>
-                </div>
-                <div class="event-content">
-                    <h3>{{ event.title }}</h3>
-                    <p class="event-location">{{ event.location }}</p>
-                    <p class="event-description">{{ event.text }}</p>
-                    <a href="{% url 'event_detail' event.pk %}" class="event-link">Batafsil</a>
-                </div>
-            </div>
-            {% empty %}
-            <p>Hozircha tadbirlar yo‘q.</p>
-            {% endfor %}
-        </div>
-
-        <!-- Pagination -->
-        {% if events.has_other_pages %}
-        <div class="pagination">
-            {% if events.has_previous %}
-                <a href="?page={{ events.previous_page_number }}">&laquo; Oldingi</a>
-            {% endif %}
-
-            {% for i in events.paginator.page_range %}
-                {% if events.number == i %}
-                    <span class="current">{{ i }}</span>
-                {% else %}
-                    <a href="?page={{ i }}">{{ i }}</a>
-                {% endif %}
-            {% endfor %}
-
-            {% if events.has_next %}
-                <a href="?page={{ events.next_page_number }}">Keyingi &raquo;</a>
-            {% endif %}
-        </div>
-        {% endif %}
+      <h1>{% trans "Tadbirlar" %}</h1>
+      <p>{% trans "Yaqinlashib kelayotgan va o'tgan tadbirlar haqida ma'lumot" %}</p>
     </div>
-</section>
-    </main>{% endblock %}
-{% block scripts %}
-{% endblock %}
+  </section>
+
+  <section class="events-section">
+    <div class="container">
+      <div class="events-grid">
+        {% for event in page_obj %}
+        <div class="event-card">
+          <div class="event-date">
+            <span class="day">{{ event.start_time|date:"d" }}</span>
+            <span class="month">{{ event.start_time|date:"M" }}</span>
+          </div>
+          <div class="event-content">
+            <h3>{{ event.title }}</h3>
+            <p class="event-location">{{ event.location }}</p>
+            <p class="event-description">{{ event.description }}</p>
+            <a href="{% url 'event_detail' event.pk %}" class="event-link"
+              >{% trans "Batafsil" %}</a
+            >
+          </div>
+        </div>
+        {% empty %}
+        <p>{% trans "Hozircha tadbirlar mavjud emas." %}</p>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if page_obj.has_other_pages %}
+      <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">{% trans "Oldingi" %}</a>
+        {% else %}
+        <span class="disabled">{% trans "Oldingi" %}</span>
+        {% endif %}
+
+        <span class="current">
+          {% trans "Sahifa" %} {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">{% trans "Keyingi" %}</a>
+        {% else %}
+        <span class="disabled">{% trans "Keyingi" %}</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock %} {% block scripts %}{% endblock %}

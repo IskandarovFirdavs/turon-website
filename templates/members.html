@@ -1,49 +1,62 @@
-{% extends "base.html" %}
-{% load static %}
-{% load i18n %}
-
-{% block title %}
-{% trans "Members page" %}
-{% endblock %}
-
+{% extends "base.html" %} {% load static %} {% load i18n %}
+<!--  -->
+{% block title %}{% trans "Members page" %}{% endblock %}
+<!--  -->
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'admin/css/styles/members.css' %}">
-{% endblock %}
-
-{% block content %}
+<link rel="stylesheet" href="{% static 'admin/css/styles/members.css' %}" />
+{% endblock %} {% block content %}
 <main class="main-content">
-    <section class="hero-section">
-        <div class="container">
-            <h1>{% trans "A'zo Davlatlar" %}</h1>
-            <p>{% trans "Xalqaro Turon Federatsiyasi a'zolari" %}</p>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="page-title">{% trans "A'zo Davlatlar" %}</h1>
+      <p class="page-subtitle">
+        {% trans "Xalqaro Turon Federatsiyasi a'zolari" %}
+      </p>
+    </div>
+  </section>
 
-    <section class="members-section">
-        <div class="container">
-            <div class="members-grid">
-                {% for member in members %}
-                <div class="member-card">
-                    <div class="member-image">
-                        <img height="130px" src="{{ member.image.url }}" alt="{{ member.name }}">
-                    </div>
-                    <h3>{{ member.name }}</h3>
-                    {% if member.website_url %}
-                    <a style="text-decoration:none;" href="{{ member.website_url }}" target="_blank" class="member-website">
-                        {% trans "Vebsayt" %}
-                    </a>
-                    {% endif %}
-                </div>
-                {% empty %}
-                <div class="no-members">
-                    <p>{% trans "Hozircha a'zolar mavjud emas" %}</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+  <!-- Members Section -->
+  <section class="members-section">
+    <div class="container">
+      {% if members %}
+      <div class="members-grid">
+        {% for member in members %}
+        <article class="member-card">
+          <div class="member-image">
+            <img
+              src="{{ member.image.url }}"
+              alt="{{ member.name }}"
+              height="130"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="member-info">
+            <h3 class="member-name">{{ member.name }}</h3>
+
+            {% if member.website_url %}
+            <a
+              href="{{ member.website_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="member-website"
+            >
+              🌐 {% trans "Vebsayt" %}
+            </a>
+            {% else %}
+            <p class="no-website">{% trans "Vebsayt mavjud emas" %}</p>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="no-members">
+        <p>{% trans "Hozircha a'zolar mavjud emas." %}</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
 </main>
-{% endblock %}
-
-{% block scripts %}
-{% endblock %}
+{% endblock %} {% block scripts %}{% endblock %}

@@ -2,42 +2,43 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}About page{% endblock %}
-    {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'admin/css/styles/about.css' %}">
-    {% endblock %}
+{% block title %}{% trans "About" %}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/styles/about.css' %}">
+{% endblock %}
 {% block content %}
-    <main class="main-content">
-        <section class="hero-section">
-            <div class="container">
-              <h1>{% trans "Biz haqimizda" %}</h1>
-<p>{% trans "Xalqaro Turon Federatsiyasi an'anaviy sport turlarini rivojlantirish va saqlash uchun tashkil etilgan." %}</p>
-            </div>
-        </section>
+<main class="main-content">
+    <section class="hero-section">
+        <div class="container">
+            <h1>{% trans "Biz haqimizda" %}</h1>
+            <p>{% trans "Xalqaro Turon Federatsiyasi an'anaviy sport turlarini rivojlantirish va saqlash uchun tashkil etilgan." %}</p>
+        </div>
+    </section>
 
-        <section class="about-content">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-text">
-                        <h2>Bizning missiyamiz</h2>
-                        <p>Xalqaro Turon Federatsiyasi 2010-yilda tashkil etilgan bo'lib, an'anaviy turon sport
-                            turlarini dunyo miqyosida rivojlantirish va targ'ib qilishni maqsad qilgan.</p>
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Bizning missiyamiz</h2>
+                    <p>Xalqaro Turon Federatsiyasi 2010-yilda tashkil etilgan bo'lib, an'anaviy turon sport
+                        turlarini dunyo miqyosida rivojlantirish va targ'ib qilishni maqsad qilgan.</p>
 
-                        <h3>Asosiy yo'nalishlar:</h3>
-                        <ul>
-                            <li>An'anaviy sport turlarini saqlash va rivojlantirish</li>
-                            <li>Xalqaro musobaqalar tashkil etish</li>
-                            <li>Yoshlar o'rtasida turon sportini targ'ib qilish</li>
-                            <li>Madaniy merosni saqlash</li>
-                        </ul>
-                    </div>
-                    <div class="about-image">
-                        <img src="https://i0.wp.com/astu.uz/wp-content/uploads/2022/12/photo_2022-12-22_13-38-22-1.jpg?ssl=1" alt="Turon sport musobaqasi">
-                    </div>
+                    <h3>Asosiy yo'nalishlar:</h3>
+                    <ul>
+                        <li>An'anaviy sport turlarini saqlash va rivojlantirish</li>
+                        <li>Xalqaro musobaqalar tashkil etish</li>
+                        <li>Yoshlar o'rtasida turon sportini targ'ib qilish</li>
+                        <li>Madaniy merosni saqlash</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://i0.wp.com/astu.uz/wp-content/uploads/2022/12/photo_2022-12-22_13-38-22-1.jpg?ssl=1"
+                         alt="Turon sport musobaqasi">
                 </div>
             </div>
-        </section>
-    </main>{% endblock %}
+        </div>
+    </section>
+</main>{% endblock %}
 
 {% block scripts %}
 {% endblock %}

@@ -1,12 +1,87 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-
-{% block title %}
-Event detail
-{% endblock %}
+{% block title %}{{ event.title }}{% endblock %}
+{% load tz %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'admin/css/styles/event-detail.css' %}">
+<link
+        rel="stylesheet"
+        href="{% static 'admin/css/styles/event-detail.css' %}"
+/>
+<style>
+  .calendar-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease;
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .calendar-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .calendar-header button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+
+  .calendar-header button:hover {
+    color: var(--accent);
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .calendar-day {
+    padding: 0.7rem 0;
+    border-radius: 8px;
+    cursor: default;
+    color: var(--text);
+  }
+
+  .calendar-day.event {
+    background-color: var(--accent);
+    color: white;
+    font-weight: 600;
+  }
+
+  :root {
+    --bg: #ffffff;
+    --border: #e5e7eb;
+    --text: #1f2937;
+    --accent: #2563eb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1f2937;
+      --border: #374151;
+      --text: #e5e7eb;
+      --accent: #3b82f6;
+    }
+  }
+</style>
 {% endblock %}
 {% block content %}
 <main class="main-content">
@@ -14,13 +89,28 @@ Event detail
         <div class="container">
             <div class="event-hero-content">
                 <div class="event-date-large">
-                    <span class="day">{{ event.date|date:'d' }}</span>
-                    <span class="month">{{ event.date|date:'M' }}</span>
-                    <span class="year">{{ event.date|date:'Y' }}</span>
+                    <span class="day">{{ event.start_time|date:"d" }}</span>
+                    <span class="month">{{ event.start_time|date:"M" }}</span>
+                    <span class="year">{{ event.start_time|date:"Y" }}</span>
                 </div>
                 <div class="event-info">
                     <h1>{{ event.title }}</h1>
                     <p class="event-location">{{ event.location }}</p>
+                    <p class="event-time text-gray-600 text-sm">
+                        {% if event.start_time|date:"d" != event.end_time|date:"d" %}
+                        {{ event.start_time|date:"M d, H:i" }}
+                        {% if event.end_time %}
+                        <span class="mx-1 text-gray-400">—</span>
+                        {{ event.end_time|date:"M d, H:i" }}
+                        {% endif %}
+                        {% else %}
+                        {{ event.start_time|date:"H:i" }}
+                        {% if event.end_time %}
+                        <span class="mx-1 text-gray-400">—</span>
+                        {{ event.end_time|date:"H:i" }}
+                        {% endif %}
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
@@ -30,37 +120,152 @@ Event detail
         <div class="container">
             <div class="details-grid">
                 <div class="main-content-area">
-                    <p>{{ event.description }}</p>
-                    <span></span>
+                    <h2>{% trans "Tadbir haqida" %}</h2>
+                    <p>
+                        {{ event.description }}
+                    </p>
                 </div>
-                {% if event.main_image %}
-                <img width="60%"  src="{{ event.main_image.url }}" alt="Jahon Chempionati tayyorgarlik">
-                {% else %}
-                {% endif %}
 
+                <div class="sidebar">
+                    {% if related_events %}
+                    <div class="info-card bg-white dark:bg-gray-800 shadow-md rounded-2xl p-4 space-y-4 transition">
+                        <h3 class="text-lg font-semibold border-b border-gray-200 dark:border-gray-700 pb-2 mb-3 text-gray-800 dark:text-gray-100">
+                            {% trans "Bog'liq tadbirlar" %}
+                        </h3>
 
-                {% if event.main_video %}
-                <div class="article-image">
-                    <video height="240px" width="90%" controls autoplay src="{{ event.main_video.url }}"></video>
+                        {% for event in related_events %}
+                        <div class="info-item border border-gray-200 dark:border-gray-700 rounded-xl p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                            <a style="text-decoration:none;color:blue;" href="{% url 'event_detail' event.pk %}"
+                               class="event-title-link">
+                                <h2>{{ event.title }}</h2>
+                            </a>
+
+                            <p class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-1">
+                                <span>{{ event.start_time|date:"j F, Y" }}</span>
+                            </p>
+
+                            <p class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-1">
+                                {% if event.start_time|date:"d" != event.end_time|date:"d" %}
+                                <span>{{ event.start_time|date:"M d, H:i" }}</span>
+                                {% if event.end_time %}
+                                <span class="text-gray-400 dark:text-gray-500">—</span>
+                                <span>{{ event.end_time|date:"M d, H:i" }}</span>
+                                {% endif %}
+                                {% else %}
+                                <span>{{ event.start_time|date:"H:i" }}</span>
+                                {% if event.end_time %}
+                                <span class="text-gray-400 dark:text-gray-500">—</span>
+                                <span>{{ event.end_time|date:"H:i" }}</span>
+                                {% endif %}
+                                {% endif %}
+                            </p>
+
+                            <p class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-1">
+                                <span>{{ event.location }}</span>
+                            </p>
+                        </div>
+                        {% empty %}
+                        <p class="text-gray-500 dark:text-gray-400 italic">
+                            {% trans "Hozircha boshqa tadbirlar mavjud emas." %}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="calendar-container">
+  <div class="calendar-header">
+    <button id="prevMonth">‹</button>
+    <h3 id="monthYear"></h3>
+    <button id="nextMonth">›</button>
+  </div>
+  <div class="calendar-grid" id="calendar"></div>
+</div>
+                    {% endif %}
                 </div>
-                {% else %}
-                {% endif %}
-                {% if additional_image %}
-                <h2>Related photos</h2>
-                {% for add in additional_img %}
-                <img height="150px" width="200px" src="{{ add.image.url }}">
-                {% endfor %}
-                {% endif %}
-                {% if additional_video %}
-                <h2>Related videos</h2>
-                {% for add in additional_video %}
-                <video controls height="150px" width="200px" src="{{ add.video.url }}"></video>
-                {% endfor %}
-                {% endif %}
             </div>
         </div>
     </section>
 </main>
+
 {% endblock %}
 {% block scripts %}
+<script>
+  // Django'dan event sanalari olinyapti
+  const events = [
+    {% for event in all_events %}
+      {
+        start: "{{ event.start_time|date:'Y-m-d' }}",
+        {% if event.end_time %}
+        end: "{{ event.end_time|date:'Y-m-d' }}",
+        {% else %}
+        end: "{{ event.start_time|date:'Y-m-d' }}",
+        {% endif %}
+      },
+    {% endfor %}
+  ];
+
+  const calendar = document.getElementById("calendar");
+  const monthYear = document.getElementById("monthYear");
+  const prevMonth = document.getElementById("prevMonth");
+  const nextMonth = document.getElementById("nextMonth");
+
+  let date = new Date();
+
+  function getEventDates() {
+    const dates = new Set();
+
+    events.forEach(ev => {
+      const start = new Date(ev.start);
+      const end = new Date(ev.end);
+
+      for (
+        let d = new Date(start);
+        d <= end;
+        d.setDate(d.getDate() + 1)
+      ) {
+        dates.add(d.toISOString().split("T")[0]);
+      }
+    });
+
+    return dates;
+  }
+
+  const eventDates = getEventDates();
+
+  function renderCalendar() {
+    calendar.innerHTML = "";
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    monthYear.textContent = date.toLocaleString("default", {
+      month: "long",
+      year: "numeric",
+    });
+
+    // Bo‘sh joylar (hafta boshi)
+    for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
+      calendar.innerHTML += `<div></div>`;
+    }
+
+    for (let day = 1; day <= lastDate; day++) {
+      const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      const isEvent = eventDates.has(fullDate);
+      const cls = isEvent ? "calendar-day event" : "calendar-day";
+      calendar.innerHTML += `<div class="${cls}">${day}</div>`;
+    }
+  }
+
+  prevMonth.onclick = () => {
+    date.setMonth(date.getMonth() - 1);
+    renderCalendar();
+  };
+  nextMonth.onclick = () => {
+    date.setMonth(date.getMonth() + 1);
+    renderCalendar();
+  };
+
+  renderCalendar();
+</script>
 {% endblock %}

@@ -2,75 +2,97 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}
-{% trans "News page" %}
-{% endblock %}
+{% block title %} {% trans "News page" %} {% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'admin/css/styles/news.css' %}">
+<link rel="stylesheet" href="{% static 'admin/css/styles/news.css' %}" />
 {% endblock %}
 
 {% block content %}
 <main class="main-content">
-    <section class="hero-section">
-        <div class="container">
-            <h1>{% trans "Yangiliklar" %}</h1>
-            <p>{% trans "Eng so'nggi yangiliklar va e'lonlar" %}</p>
-        </div>
-    </section>
-
-<section class="news-section">
+  <!-- Hero section -->
+  <section class="hero-section">
     <div class="container">
-        <div class="news-grid">
-            {% for item in news_list %}
-            <article class="news-card">
-                <div class="news-image">
-                    {% if item.main_image %}
-                        <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
-                    {% else %}
-                        <img src="{% static 'admin/img/placeholder-news.png' %}" alt="{{ item.title }}">
-                    {% endif %}
-                </div>
-                <div class="news-content">
-                    <div class="news-meta">
-                        <span class="news-date">{{ item.date|date:"d F Y" }}</span>
-                    </div>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.text|truncatewords:30 }}</p>
-                    <a href="{% url 'news_detail' item.pk %}" class="read-more">{% trans "Batafsil o'qish" %}</a>
-                </div>
-            </article>
-            {% empty %}
-            <div class="no-news">
-                <p>{% trans "Hozircha yangiliklar mavjud emas" %}</p>
-            </div>
-            {% endfor %}
-        </div>
-
-        <!-- Pagination -->
-        {% if news_list.has_other_pages %}
-        <div class="pagination">
-            {% if news_list.has_previous %}
-                <a href="?page={{ news_list.previous_page_number }}" class="pagination-btn">&laquo; {% trans "Oldingi" %}</a>
-            {% endif %}
-
-            {% for i in news_list.paginator.page_range %}
-                {% if news_list.number == i %}
-                    <span class="pagination-btn active">{{ i }}</span>
-                {% else %}
-                    <a href="?page={{ i }}" class="pagination-btn">{{ i }}</a>
-                {% endif %}
-            {% endfor %}
-
-            {% if news_list.has_next %}
-                <a href="?page={{ news_list.next_page_number }}" class="pagination-btn">{% trans "Keyingi" %} &raquo;</a>
-            {% endif %}
-        </div>
-        {% endif %}
+      <h1>{% trans "Yangiliklar" %}</h1>
+      <p>{% trans "Eng so‘nggi yangiliklar va e’lonlar" %}</p>
     </div>
-</section>
+  </section>
+
+  <section class="news-section">
+    <div class="container">
+      <div class="news-grid">
+        {% if first_news %}
+        <!-- Katta yangilik -->
+        <article class="news-card featured">
+          <div class="news-image">
+            <a href="{% url 'news_detail' first_news.pk %}">
+              <img src="{{ first_news.main_image.url|default:'/static/images/placeholder.jpg' }}" alt="{{ first_news.title }}">
+            </a>
+          </div>
+          <div class="news-content">
+            <div class="news-meta">
+              <span class="news-date">{{ first_news.date|date:"j F Y" }}</span>
+            </div>
+            <h2>
+              <a href="{% url 'news_detail' first_news.pk %}">{{ first_news.title }}</a>
+            </h2>
+            <p>{{ first_news.text|truncatewords:40 }}</p>
+            <a href="{% url 'news_detail' first_news.pk %}" class="read-more">{% trans "Batafsil o‘qish" %}</a>
+          </div>
+        </article>
+        {% endif %}
+
+        <!-- Qolgan kichik yangiliklar -->
+        {% if other_news %}
+          {% for news in other_news %}
+          <article class="news-card">
+            <div class="news-image">
+              <a href="{% url 'news_detail' news.pk %}">
+                <img src="{{ news.main_image.url|default:'/static/images/placeholder.jpg' }}" alt="{{ news.title }}">
+              </a>
+            </div>
+            <div class="news-content">
+              <div class="news-meta">
+                <span class="news-date">{{ news.date|date:"j F Y" }}</span>
+              </div>
+              <h3><a href="{% url 'news_detail' news.pk %}">{{ news.title }}</a></h3>
+              <p>{{ news.text|truncatewords:20 }}</p>
+              <a href="{% url 'news_detail' news.pk %}" class="read-more">{% trans "Batafsil o‘qish" %}</a>
+            </div>
+          </article>
+          {% endfor %}
+        {% else %}
+          <p>{% trans "Hozircha yangiliklar mavjud emas." %}</p>
+        {% endif %}
+      </div>
+
+      <!-- Pagination -->
+      {% if page_obj.has_other_pages %}
+      <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="pagination-btn">&laquo; {% trans "Oldingi" %}</a>
+        {% else %}
+        <span class="disabled">&laquo; {% trans "Oldingi" %}</span>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+          <button class="pagination-btn active">{{ num }}</button>
+          {% else %}
+          <a href="?page={{ num }}" class="pagination-btn">{{ num }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="pagination-btn">{% trans "Keyingi" %} &raquo;</a>
+        {% else %}
+        <span class="disabled">{% trans "Keyingi" %} &raquo;</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
 </main>
 {% endblock %}
 
-{% block scripts %}
-{% endblock %}
+{% block scripts %}{% endblock %}

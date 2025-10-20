@@ -1,37 +1,54 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>{% trans "Turon Federation" %}</h3>
-                <p>{% trans "International Turon Federation - preserving and promoting traditional Central Asian sports worldwide." %}</p>
-                <div class="footer-social">
-                    <a href="" aria-label="{% trans 'Facebook' %}"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="" aria-label="{% trans 'Telegram' %}"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="" aria-label="{% trans 'Instagram' %}"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="" aria-label="{% trans 'YouTube' %}"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h3>{% trans "Quick Links" %}</h3>
-                <a href="{% url 'about' %}">{% trans "About Us" %}</a>
-                <a href="{% url 'events' %}">{% trans "Events" %}</a>
-                <a href="{% url 'news' %}">{% trans "News" %}</a>
-                <a href="{% url 'contact' %}">{% trans "Contact" %}</a>
-            </div>
-
-            <div class="footer-section">
-                <h3>{% trans "Contact Info" %}</h3>
-                <p><i class="fa-solid fa-envelope"></i> {% trans "info@turon-federation.org" %}</p>
-                <p><i class="fa-solid fa-phone-volume"></i> {% trans "+998 71 123 45 67" %}</p>
-                <p><i class="fa-solid fa-location-dot"></i> {% trans "Tashkent, Uzbekistan" %}</p>
-            </div>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>{% trans "Turon Federation" %}</h3>
+        <p>
+          {% trans "Xalqaro Turon Federatsiyasi - an'anaviy Markaziy Osiyo sport turlarini saqlash va targ'ib qilish." %}
+        </p>
+        <div class="footer-social">
+          <a href="" aria-label="{% trans 'Facebook' %}"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a href="" aria-label="{% trans 'Telegram' %}"
+            ><i class="fa-brands fa-telegram"></i
+          ></a>
+          <a href="" aria-label="{% trans 'Instagram' %}"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="" aria-label="{% trans 'YouTube' %}"
+            ><i class="fa-brands fa-youtube"></i
+          ></a>
         </div>
+      </div>
 
-        <div class="footer-bottom">
-            <p>{% trans "&copy; 2024 International Turon Federation. All rights reserved." %}</p>
-        </div>
+      <div class="footer-section">
+        <h3>{% trans "Tezkor havolalar" %}</h3>
+        <a href="{% url 'about' %}">{% trans "Biz haqimizda" %}</a>
+        <a href="{% url 'events' %}">{% trans "Musobaqalar" %}</a>
+        <a href="{% url 'news' %}">{% trans "Yangiliklar" %}</a>
+        <a href="{% url 'contact' %}">{% trans "Aloqa" %}</a>
+      </div>
+
+      <div class="footer-section">
+        <h3>{% trans "Aloqa ma'lumotlari" %}</h3>
+        <p>
+          <i class="fa-solid fa-envelope"></i> {% trans "info@turon-federation.org" %}
+        </p>
+        <p>
+          <i class="fa-solid fa-phone-volume"></i> {% trans "+998 71 123 45 67" %}
+        </p>
+        <p>
+          <i class="fa-solid fa-location-dot"></i> {% trans "Tashkent, Uzbekistan" %}
+        </p>
+      </div>
     </div>
+
+    <div class="footer-bottom">
+      <p>
+        {% trans "&copy; 2024 International Turon Federation. All rights reserved." %}
+      </p>
+    </div>
+  </div>
 </footer>

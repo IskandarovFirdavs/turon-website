@@ -9,7 +9,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('super-secret-panel-123/', admin.site.urls),
+    path('admin/super/secret/panel/08944/', admin.site.urls),
     path('', include('news.urls')),
 )
 

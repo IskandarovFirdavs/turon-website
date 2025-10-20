@@ -2,9 +2,8 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}
-Contact page
-{% endblock %}
+{% block title %}{% trans "Contact" %}{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'admin/css/styles/contact.css' %}">
 {% endblock %}
@@ -13,8 +12,8 @@ Contact page
 <main class="main-content">
     <section class="hero-section">
         <div class="container">
-            <h1>Biz bilan bog'laning</h1>
-            <p>Savollaringiz bo'lsa, biz bilan bog'laning</p>
+            <h1>{% trans "Biz bilan bog'laning" %}</h1>
+            <p>{% trans "Savollaringiz bo'lsa, biz bilan bog'laning" %}</p>
         </div>
     </section>
 
@@ -22,15 +21,15 @@ Contact page
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Aloqa ma'lumotlari</h2>
+                    <h2>{% trans "Aloqa ma'lumotlari" %}</h2>
 
                     <div class="contact-item">
-                        <h3>Manzil</h3>
-                        <p>Toshkent shahar</p>
+                        <h3>{% trans "Manzil" %}</h3>
+                        <p>{% trans "Toshkent shahar" %}</p>
                     </div>
 
                     <div class="contact-item">
-                        <h3>Telefon</h3>
+                        <h3>{% trans "Telefon" %}</h3>
                         <p>+1 407 724 4474 (U.S.)</p>
                         <p>+1 347 583 2684 (U.S.)</p>
                         <p>+998 90 357 91 55 (UZB)</p>
@@ -42,14 +41,13 @@ Contact page
                     </div>
 
                     <div class="contact-item">
-                        <h3>Ish vaqti</h3>
-                        <p>Dushanba - Seshanba:
-                            10:00–17:00</p>
+                        <h3>{% trans "Ish vaqti" %}</h3>
+                        <p>{% trans "Dushanba - Seshanba: 10:00–17:00" %}</p>
                     </div>
                 </div>
 
                 <div class="map-container">
-                    <h2>Bizning joylashuvimiz</h2>
+                    <h2>{% trans "Bizning joylashuvimiz" %}</h2>
                     <div class="map-wrapper">
                         <iframe
                                 src="https://www.openstreetmap.org/export/embed.html?bbox=-74.01778371776804%2C40.578488572957376%2C-73.97778371776805%2C40.61848857295738&layer=mapnik&marker=40.59848857295738%2C-73.99778371776804"
