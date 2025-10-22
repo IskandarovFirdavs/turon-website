@@ -19,16 +19,15 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <h2>Bizning missiyamiz</h2>
-                    <p>Xalqaro Turon Federatsiyasi 2010-yilda tashkil etilgan bo'lib, an'anaviy turon sport
-                        turlarini dunyo miqyosida rivojlantirish va targ'ib qilishni maqsad qilgan.</p>
+                    <h2>{% trans "Bizning missiyamiz" %}</h2>
+                    <p>{% trans "Xalqaro Turon Federatsiyasi 2010-yilda tashkil etilgan bo'lib, an'anaviy turon sport turlarini dunyo miqyosida rivojlantirish va targ'ib qilishni maqsad qilgan." %}</p>
 
-                    <h3>Asosiy yo'nalishlar:</h3>
+                    <h3>{% trans "Asosiy yo'nalishlar:" %}</h3>
                     <ul>
-                        <li>An'anaviy sport turlarini saqlash va rivojlantirish</li>
-                        <li>Xalqaro musobaqalar tashkil etish</li>
-                        <li>Yoshlar o'rtasida turon sportini targ'ib qilish</li>
-                        <li>Madaniy merosni saqlash</li>
+                        <li>{% trans "An'anaviy sport turlarini saqlash va rivojlantirish" %}</li>
+                        <li>{% trans "Xalqaro musobaqalar tashkil etish" %}</li>
+                        <li>{% trans "Yoshlar o'rtasida turon sportini targ'ib qilish" %}</li>
+                        <li>{% trans "Madaniy merosni saqlash" %}</li>
                     </ul>
                 </div>
                 <div class="about-image">
@@ -38,7 +37,102 @@
             </div>
         </div>
     </section>
-</main>{% endblock %}
+
+    <!-- New Federation Information Section -->
+    <section class="federation-info">
+        <div class="container">
+            <div class="info-content">
+                <h2>{% trans "Xalqaro Turon Federatsiyasi" %}</h2>
+                <p>{% trans "Xalqaro Turon Federatsiyasi (ITF) Qo'shma Shtatlar qonunlari bo'yicha nodavlat xalqaro notijorat tashkiloti sifatida tan olingan." %}</p>
+
+                <p>{% trans "Federatsiya Turonni xalqaro maydonda rivojlantirishga bag'ishlangan butun dunyo bo'ylab jismoniy va yuridik shaxslarning oliy xalqaro organi hisoblanadi." %}</p>
+
+                <p>{% trans "Federatsiya butun dunyo bo'ylab havaskor va professional Turonning barcha turlarini muvofiqlashtirish, boshqarish va rivojlantirish, shuningdek, barcha xalqaro Turon tadbirlarini tashkil etish va o'tkazish uchun eksklyuziv huquqqa ega." %}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <h2>{% trans "Rahbariyat" %}</h2>
+
+            <div class="leadership-grid">
+                <div class="leadership-category">
+                    <h3>{% trans "Bosh qarorgoh" %}</h3>
+                    <div class="leader-card">
+                        <h4>{% trans "Federatsiya Prezidenti (ITF)" %}</h4>
+                        <p>Farrukh Niyazimbetov 🇺🇸 USA</p>
+                    </div>
+                    <div class="leader-card">
+                        <h4>{% trans "Bosh kotib" %}</h4>
+                        <p>Ravshanbek Almatov 🇺🇸 USA</p>
+                    </div>
+                </div>
+
+                <div class="leadership-category">
+                    <h3>{% trans "ITF Prezidentining huquqiy maslahatchilari" %}</h3>
+                    <div class="leader-list">
+                        <p>Jamil Sharapov 🇺🇸 USA</p>
+                        <p>Bakhtyor Khidoyatov 🇺🇿 UZB</p>
+                        <p>Akrom Sherdonayev 🇺🇿 UZB</p>
+                        <p>Gulchekhra Abdurasulova 🇺🇿 UZB</p>
+                        <p>Ravshan Akhmedjanov 🇺🇿 UZB</p>
+                    </div>
+                </div>
+
+                <div class="leadership-category">
+                    <h3>{% trans "Vitse-prezidentlar" %}</h3>
+                    <div class="leader-list">
+                        <p><strong>{% trans "Vitse-prezident:" %}</strong> Dilmurod Fozilov (ASCTF Prezidenti) 🇺🇿 UZB</p>
+                        <p><strong>{% trans "Vitse-prezident:" %}</strong> Stephen Sweetlove 🇬🇧 GBR</p>
+                        <p><strong>{% trans "Vitse-prezident:" %}</strong> Ron Hill 🇺🇸 USA</p>
+                        <p><strong>{% trans "Vitse-prezident:" %}</strong> Kadir Yusufog'lu 🇹🇷 TRK</p>
+                        <p><strong>{% trans "Moliya va taraqqiyot vitse-prezidenti:" %}</strong> Sarvar Rahmatov 🇺🇿 UZB</p>
+                        <p><strong>{% trans "Jamoat va tashkiliy ishlar vitse-prezidenti:" %}</strong> Otabek Eshmamatov 🇺🇸 USA</p>
+                        <p><strong>{% trans "Xalqaro aloqalar vitse-prezidenti:" %}</strong> Sabrina Bakhtiyorova 🇺🇿 UZB</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="executive-section">
+                <h3>{% trans "Ijrochi rahbar" %}</h3>
+                <div class="leader-list">
+                    <p><strong>{% trans "Ijrochi direktor:" %}</strong> Jamshid Karimov 🇺🇿 UZB</p>
+                    <p><strong>{% trans "Sport va faol jamiyat direktori:" %}</strong> Shokhrukh Khojimetov 🇺🇿 UZB</p>
+                    <p><strong>{% trans "Aloqa va media bo'limi boshlig'i:" %}</strong> Sarvinozkhon Khikmatullayeva 🇺🇿 UZB</p>
+                </div>
+            </div>
+
+            <div class="committee-section">
+                <h3>{% trans "ITF Ijroiya qo'mitasi a'zolari" %}</h3>
+                <div class="committee-grid">
+                    <div class="committee-member">(CH) Bob Clark 🇺🇸 USA</div>
+                    <div class="committee-member">Masa Yoshizawa JPN</div>
+                    <div class="committee-member">Enrique Matute 🇨🇦 CAN</div>
+                    <div class="committee-member">Begzod Ubaydullaev 🇺🇿 UZB</div>
+                    <div class="committee-member">Patricio Avendano 🇨🇱 CHI</div>
+                    <div class="committee-member">Marco Contreras 🇲🇽 MEX</div>
+                    <div class="committee-member">Xabibulla Sadullaev 🇺🇿 UZB</div>
+                    <div class="committee-member">Abdugafur Islamov 🇺🇿 UZB</div>
+                    <div class="committee-member">Botirjon Saidov 🇺🇿 UZB</div>
+                    <div class="committee-member">Jamoliddin Sadullaxojayev 🇺🇿 UZB</div>
+                    <div class="committee-member">David Dempsey 🇺🇸 USA</div>
+                    <div class="committee-member">Otabek Ishmuratov 🇺🇿 UZB</div>
+                </div>
+            </div>
+
+            <div class="technical-section">
+                <h3>{% trans "Texnik komissiya bo'limi" %}</h3>
+                <div class="leader-card">
+                    <h4>{% trans "Rais" %}</h4>
+                    <p>Dilshod Usmonov 🇺🇿 UZB</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
 
 {% block scripts %}
 {% endblock %}

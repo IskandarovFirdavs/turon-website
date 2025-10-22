@@ -47,20 +47,33 @@ class EventsModel(TranslatableModel):
         return self.safe_translation_getter("title", any_language=True)
 
 
-
-class GalleryImageModel(models.Model):
+class GalleryImageModel(TranslatableModel):
     image = models.ImageField(upload_to="gallery/imgs/")
-    caption = models.CharField(max_length=255)
+    translations = TranslatedFields(
+        caption=models.CharField(max_length=255)
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Gallery Image"
+        verbose_name_plural = "Gallery Images"
+        ordering = ["-created_at"]
+
     def __str__(self):
-        return self.caption if self.caption else "Gallery Image"
-    
-    
-class GalleryVideoModel(models.Model):
+        return self.safe_translation_getter("caption", any_language=True) or "Untitled Image"
+
+
+class GalleryVideoModel(TranslatableModel):
     video_url = models.URLField(max_length=255)
-    caption = models.CharField(max_length=255)
+    translations = TranslatedFields(
+        caption=models.CharField(max_length=255)
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Gallery Video"
+        verbose_name_plural = "Gallery Videos"
+        ordering = ["-created_at"]
+
     def __str__(self):
-        return self.caption if self.caption else "Gallery Video"
+        return self.safe_translation_getter("caption", any_language=True) or "Untitled Video"

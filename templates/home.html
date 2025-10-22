@@ -283,29 +283,37 @@
 </section>
 
 
-  <!-- Partners Section -->
-  <section class="partners-section">
-    <div class="container">
-      <h2 class="section-title">Our Partners</h2>
-      <div class="partners-slider">
-        {% if members %}
-
-        <div class="partners-track">
-          {% for member in members %}
-          <div class="partner-item">
-            <a href="{{ member.website_url }}">
-              <img src="{{ member.image.url }}" alt="{{ member.name }}" />
-            </a>
-          </div>
+<!-- Partners Section -->
+<section class="partners-section">
+  <div class="container">
+    <h2 class="section-title">{% trans "Our Partners" %}</h2>
+    <div class="partners-slider">
+      {% if members %}
+      <div class="partners-track">
+        {% for member in members %}
+        <div class="partner-item">
+          <a href="{{ member.website_url }}" target="_blank">
+            <img src="{{ member.image.url }}" alt="{{ member.name }}" />
+          </a>
         </div>
-        {% endfor %} {% else %}
-        <p style="text-align: center; color: #6b7280; width: 100%">
-          {% trans "Hamkorlar mavjud emas." %}
-        </p>
-        {% endif %}
+        {% endfor %}
+        <!-- Dublikatlar (infinite effect uchun) -->
+        {% for member in members %}
+        <div class="partner-item">
+          <a href="{{ member.website_url }}" target="_blank">
+            <img src="{{ member.image.url }}" alt="{{ member.name }}" />
+          </a>
+        </div>
+        {% endfor %}
       </div>
+      {% else %}
+      <p style="text-align: center; color: #6b7280; width: 100%">
+        {% trans "Hamkorlar mavjud emas." %}
+      </p>
+      {% endif %}
     </div>
-  </section>
+  </div>
+</section>
 </main>
 {% endblock %} {% block scripts %}
 <script>

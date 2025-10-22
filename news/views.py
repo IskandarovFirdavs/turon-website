@@ -42,7 +42,7 @@ def history_view(request):
 
 def news_list_view(request):
     news_list = NewsModel.objects.order_by('-date')
-    paginator = Paginator(news_list, 2)
+    paginator = Paginator(news_list, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -57,23 +57,19 @@ def news_list_view(request):
 
 
 def events_list_view(request):
-    events_list = EventsModel.objects.order_by('-start_time')  # fixed
-    paginator = Paginator(events_list, 3)
+    events_list = EventsModel.objects.order_by('-start_time')
+    paginator = Paginator(events_list, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, "events.html", {"page_obj": page_obj})
 
 
-from django.core.paginator import Paginator
-from django.shortcuts import render
-from .models import GalleryImageModel, GalleryVideoModel
-
 def gallery_view(request):
     image_list = GalleryImageModel.objects.order_by('-created_at')
     video_list = GalleryVideoModel.objects.order_by('-created_at')
 
-    image_paginator = Paginator(image_list, 1)  # 6 tadan sahifada
-    video_paginator = Paginator(video_list, 1)  # 3 tadan sahifada
+    image_paginator = Paginator(image_list, 6)  # 6 tadan sahifada
+    video_paginator = Paginator(video_list, 3)  # 3 tadan sahifada
 
     image_page_number = request.GET.get('page')
     video_page_number = request.GET.get('vpage')
@@ -97,17 +93,16 @@ def gallery_view(request):
 
 
 def members_view(request):
-    members = MembersModel.objects.all()
-    paginator = Paginator(members, 2)
+    members_list = MembersModel.objects.all().order_by('id')
+    paginator = Paginator(members_list, 6)  # har sahifada 3 ta
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
-        "members": members,
+        "members": page_obj,
         "page_obj": page_obj,
     }
     return render(request, "members.html", context)
-
 
 def contact_view(request):
     return render(request, "contact.html")

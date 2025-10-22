@@ -17,46 +17,56 @@
   </section>
 
   <!-- Members Section -->
-  <section class="members-section">
-    <div class="container">
-      {% if members %}
-      <div class="members-grid">
-        {% for member in members %}
-        <article class="member-card">
-          <div class="member-image">
-            <img
-              src="{{ member.image.url }}"
-              alt="{{ member.name }}"
-              height="130"
-              loading="lazy"
-            />
-          </div>
+ <section class="members-section">
+  <div class="container">
+    {% if members %}
+    <div class="members-grid">
+      {% for member in members %}
+      <article class="member-card">
+        <div class="member-image">
+          <img src="{{ member.image.url }}" alt="{{ member.name }}" height="130" loading="lazy" />
+        </div>
+        <div class="member-info">
+          <h3 class="member-name">{{ member.name }}</h3>
+          {% if member.website_url %}
+          <a style="text-decoration:none;" href="{{ member.website_url }}" target="_blank" class="member-website">
+            🌐 {% trans "Vebsayt" %}
+          </a>
+          {% else %}
+          <p class="no-website">{% trans "Vebsayt mavjud emas" %}</p>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
 
-          <div class="member-info">
-            <h3 class="member-name">{{ member.name }}</h3>
-
-            {% if member.website_url %}
-            <a
-              href="{{ member.website_url }}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="member-website"
-            >
-              🌐 {% trans "Vebsayt" %}
-            </a>
-            {% else %}
-            <p class="no-website">{% trans "Vebsayt mavjud emas" %}</p>
-            {% endif %}
-          </div>
-        </article>
-        {% endfor %}
-      </div>
+    {% if page_obj.has_other_pages %}
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">{% trans "Oldingi" %}</a>
       {% else %}
-      <div class="no-members">
-        <p>{% trans "Hozircha a'zolar mavjud emas." %}</p>
-      </div>
+      <span class="disabled">{% trans "Oldingi" %}</span>
+      {% endif %}
+
+      <span class="current">
+        {% trans "Sahifa" %} {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+      </span>
+
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">{% trans "Keyingi" %}</a>
+      {% else %}
+      <span class="disabled">{% trans "Keyingi" %}</span>
       {% endif %}
     </div>
-  </section>
+    {% endif %}
+
+    {% else %}
+    <div class="no-members">
+      <p>{% trans "Hozircha a'zolar mavjud emas." %}</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
 </main>
 {% endblock %} {% block scripts %}{% endblock %}
